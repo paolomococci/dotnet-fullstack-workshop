@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using Journey.Data.Contexts;
 
 namespace Journey.WebApi
 {
@@ -22,10 +24,13 @@ namespace Journey.WebApi
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<JourneyDbContext>(
+                options =>
+                {
+                    options.UseSqlite("Data Source=JourneyDatabase.sqlite3");
+                });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -33,8 +38,6 @@ namespace Journey.WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Journey.WebApi", Version = "v1" });
             });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
