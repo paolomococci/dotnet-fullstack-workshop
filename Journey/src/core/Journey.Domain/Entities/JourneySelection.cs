@@ -1,3 +1,5 @@
+using Journey.Domain.Enums;
+
 namespace Journey.Domain.Entities
 {
     public class JourneySelection
@@ -10,5 +12,6 @@ namespace Journey.Domain.Entities
         public float Price { get; set; }
         public int Duration { get; set; }
         public bool Confirmation { get; set; }
+        public Currency Currency { get; set; }
     }
 }
