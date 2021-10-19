@@ -1,3 +1,4 @@
+using Journey.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Journey.Data.Contexts
@@ -6,6 +7,7 @@ namespace Journey.Data.Contexts
     {
         public JourneyDbContext(DbContextOptions<JourneyDbContext> dbContextOptions) : base(dbContextOptions) { }
 
-
+        public DbSet<JourneySelection> JourneySelections { get; set; }
+        public DbSet<JourneyList> JourneyLists { get; set; }
     }
 }

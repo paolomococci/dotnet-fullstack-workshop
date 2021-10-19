@@ -13,6 +13,6 @@ namespace Journey.Domain.Entities
         public int Duration { get; set; }
         public bool Confirmation { get; set; }
         public Currency Currency { get; set; }
-        public JourneyList Trips { get; set; }
+        public JourneyList Journeys { get; set; }
     }
 }
