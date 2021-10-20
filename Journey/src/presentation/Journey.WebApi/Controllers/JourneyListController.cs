@@ -40,5 +40,31 @@ namespace Journey.WebApi.Controllers
         {
             return Ok(_journeyDbContext.JourneyLists);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            try
+            {
+                var journeyList = await _journeyDbContext
+                    .JourneyLists.SingleOrDefaultAsync(
+                        temp => temp.Id == id
+                    );
+
+                if (journeyList == null)
+                {
+                    return NotFound();
+                }
+
+                _journeyDbContext.JourneyLists.Remove(journeyList);
+                await _journeyDbContext.SaveChangesAsync();
+
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
