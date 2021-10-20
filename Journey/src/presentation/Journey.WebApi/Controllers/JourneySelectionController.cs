@@ -41,6 +41,24 @@ namespace Journey.WebApi.Controllers
             return Ok(_journeyDbContext.JourneySelections);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(
+            [FromRoute] int id,
+            [FromBody] JourneySelection journeySelection
+        )
+        {
+            try
+            {
+                _journeyDbContext.Update(journeySelection);
+                await _journeyDbContext.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
