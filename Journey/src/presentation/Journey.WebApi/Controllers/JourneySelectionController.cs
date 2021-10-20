@@ -10,7 +10,7 @@ using Journey.Domain.Entities;
 namespace Journey.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller")]
+    [Route("api/[controller]")]
     public class JourneySelectionController : ControllerBase
     {
         private readonly JourneyDbContext _journeyDbContext;
