@@ -52,4 +52,3 @@ COMMIT;
 ## screenshot
 
 ![Journey API](https://github.com/paolomococci/dotnet-fullstack-workshop/blob/main/screenshots/screenshot_Journey_API.png)
-
