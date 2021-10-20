@@ -10,7 +10,7 @@ using Journey.Domain.Entities;
 namespace Journey.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller")]
+    [Route("api/[controller]")]
     public class JourneyListController : ControllerBase
     {
         private readonly JourneyDbContext _journeyDbContext;
@@ -20,8 +20,23 @@ namespace Journey.WebApi.Controllers
             _journeyDbContext = journeyDbContext;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] JourneyList journeyList)
+        {
+            try
+            {
+                await _journeyDbContext.JourneyLists.AddAsync(journeyList);
+                await _journeyDbContext.SaveChangesAsync();
+                return Created("", journeyList);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
-        public IActionResult GetActionResult()
+        public IActionResult ReadAll()
         {
             return Ok(_journeyDbContext.JourneyLists);
         }

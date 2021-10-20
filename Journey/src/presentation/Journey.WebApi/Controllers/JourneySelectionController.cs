@@ -20,8 +20,23 @@ namespace Journey.WebApi.Controllers
             _journeyDbContext = journeyDbContext;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] JourneySelection journeySelection)
+        {
+            try
+            {
+                await _journeyDbContext.JourneySelections.AddAsync(journeySelection);
+                await _journeyDbContext.SaveChangesAsync();
+                return Created("", journeySelection);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
-        public IActionResult GetActionResult()
+        public IActionResult ReadAll()
         {
             return Ok(_journeyDbContext.JourneySelections);
         }
