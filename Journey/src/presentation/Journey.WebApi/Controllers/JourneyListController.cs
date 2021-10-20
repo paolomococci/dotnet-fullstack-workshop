@@ -21,7 +21,9 @@ namespace Journey.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] JourneyList journeyList)
+        public async Task<IActionResult> Create(
+            [FromBody] JourneyList journeyList
+        )
         {
             try
             {
@@ -35,10 +37,40 @@ namespace Journey.WebApi.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Read([FromRoute] int id)
+        {
+            try
+            {
+                var journeyList = await _journeyDbContext
+                    .JourneyLists.SingleOrDefaultAsync(
+                        temp => temp.Id == id
+                    );
+
+                if (journeyList == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(journeyList);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
         public IActionResult ReadAll()
         {
-            return Ok(_journeyDbContext.JourneyLists);
+            try
+            {
+                return Ok(_journeyDbContext.JourneyLists);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpPut("{id}")]
