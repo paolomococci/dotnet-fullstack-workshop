@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Voyage.Application.Common.Exceptions;
 
 namespace Voyage.Application.Common.Behaviors
 {
@@ -40,7 +41,10 @@ namespace Voyage.Application.Common.Behaviors
                 .SelectMany(validationResult => validationResult.Errors)
                 .Where(validationFailure => validationFailure != null).ToList();
 
-            //if (failures.Count != 0) throw new ValidationException(failures);
+            if (failures.Count != 0)
+            {
+                throw new PropertyValidationException(failures);
+            }
 
             return await next();
         }
