@@ -37,7 +37,12 @@ namespace Voyage.Application.Common.Behaviors
             }
 
             var requestName = typeof(TRequest).Name;
-            _iLogger.LogWarning("Voyage Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}", requestName, elapsedMilliseconds, tRequest);
+            _iLogger.LogWarning(
+                "Voyage Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
+                requestName,
+                elapsedMilliseconds,
+                tRequest
+            );
             return response;
         }
     }
