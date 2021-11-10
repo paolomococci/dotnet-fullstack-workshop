@@ -2,7 +2,7 @@ using System;
 
 namespace Voyage.Application.Common.Interfaces
 {
-    public class IDateTime
+    public interface IDateTime
     {
         DateTime NowUtc { get; }
     }

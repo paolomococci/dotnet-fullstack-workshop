@@ -1,8 +1,8 @@
 namespace Voyage.Application.Common.Interfaces
 {
-	public class ICsvFileBuilder
-	{
-		
-	}
+    public interface ICsvFileBuilder
+    {
+
+    }
 }
 
