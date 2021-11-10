@@ -1,8 +1,8 @@
 namespace Voyage.Data
 {
-	public class DependencyInjection
-	{
-		
-	}
+    public static class DependencyInjection
+    {
+
+    }
 }
 

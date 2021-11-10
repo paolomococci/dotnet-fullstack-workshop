@@ -1,8 +1,8 @@
 namespace Voyage.Shared
 {
-	public class DependencyInjection
-	{
-		
-	}
+    public static class DependencyInjection
+    {
+
+    }
 }
 
