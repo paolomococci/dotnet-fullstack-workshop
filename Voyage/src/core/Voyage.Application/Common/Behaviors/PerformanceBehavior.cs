@@ -30,7 +30,11 @@ namespace Voyage.Application.Common.Behaviors
             _stopwatch.Stop();
 
             var elapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
-            if (elapsedMilliseconds <= 500) return response;
+
+            if (elapsedMilliseconds <= 500)
+            {
+                return response;
+            }
 
             var requestName = typeof(TRequest).Name;
             _iLogger.LogWarning("Voyage Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}", requestName, elapsedMilliseconds, tRequest);
