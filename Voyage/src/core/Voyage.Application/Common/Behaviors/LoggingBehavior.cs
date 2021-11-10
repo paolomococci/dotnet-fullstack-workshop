@@ -7,14 +7,14 @@ namespace Voyage.Application.Common.Behaviors
 {
     public class LoggingBehavior<TRequest> : IRequestPreProcessor<TRequest>
     {
-        private readonly ILogger iLogger;
+        private readonly ILogger _iLogger;
 
         public async Task Process(TRequest tRequest, CancellationToken cancellationToken)
         {
             await Task.Run(() =>
             {
                 var requestName = typeof(TRequest).Name;
-                iLogger.LogInformation("Voyage Request: {@Request}", requestName, tRequest);
+                _iLogger.LogInformation("Voyage Request: {@Request}", requestName, tRequest);
             });
         }
     }
