@@ -20,7 +20,7 @@ namespace Voyage.Application.Common.Behaviors
         }
 
         public async Task<TResponse> Handle(
-            TRequest request,
+            TRequest tRequest,
             CancellationToken cancellationToken,
             RequestHandlerDelegate<TResponse> next
         )
@@ -33,7 +33,7 @@ namespace Voyage.Application.Common.Behaviors
             if (elapsedMilliseconds <= 500) return response;
 
             var requestName = typeof(TRequest).Name;
-            _iLogger.LogWarning("Voyage Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}", requestName, elapsedMilliseconds, request);
+            _iLogger.LogWarning("Voyage Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}", requestName, elapsedMilliseconds, tRequest);
             return response;
         }
     }
