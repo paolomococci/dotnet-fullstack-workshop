@@ -5,4 +5,3 @@ namespace Voyage.Application.Common.Interfaces
 
     }
 }
-
