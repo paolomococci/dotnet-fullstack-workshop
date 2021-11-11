@@ -13,6 +13,6 @@ namespace Voyage.Domain.Entities
         public int Duration { get; set; }
         public bool Confirmation { get; set; }
         public Currency Currency { get; set; }
-        public TrekList trekList { get; set; }
+        public TrekList TrekList { get; set; }
     }
 }
