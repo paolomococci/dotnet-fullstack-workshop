@@ -10,7 +10,7 @@ namespace Voyage.Application.TrekLists.Commands.CreateTrekList
         public CreateTrekListCommandValidator(IApplicationDbContext context)
         {
             _context = context;
-            /*
+
             RuleFor(v => v.Country)
                 .NotEmpty().WithMessage("Country field is required")
                 .MaximumLength(128).WithMessage("The Country field accepts a maximum of 128 characters");
@@ -18,7 +18,6 @@ namespace Voyage.Application.TrekLists.Commands.CreateTrekList
             RuleFor(v => v.City)
                 .NotEmpty().WithMessage("City field is required")
                 .MaximumLength(128).WithMessage("The City field accepts a maximum of 128 characters");
-            */
         }
     }
 }
