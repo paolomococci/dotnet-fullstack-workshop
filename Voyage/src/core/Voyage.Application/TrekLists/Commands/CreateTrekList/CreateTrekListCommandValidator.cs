@@ -5,11 +5,11 @@ namespace Voyage.Application.TrekLists.Commands.CreateTrekList
 {
     public class CreateTrekListCommandValidator : AbstractValidator<CreateTrekListCommand>
     {
-        private readonly IApplicationDbContext _context;
+        private readonly IApplicationDbContext _iApplicationDbContext;
 
         public CreateTrekListCommandValidator(IApplicationDbContext context)
         {
-            _context = context;
+            _iApplicationDbContext = context;
 
             RuleFor(v => v.Country)
                 .NotEmpty().WithMessage("Country field is required")
