@@ -1,7 +1,10 @@
+using System;
+using Voyage.Application.Common.Interfaces;
+
 namespace Voyage.Shared.Services
 {
-    public class DateTimeService
+    public class DateTimeService : IDateTime
     {
-
+        public DateTime NowUtc => throw new NotImplementedException();
     }
 }
