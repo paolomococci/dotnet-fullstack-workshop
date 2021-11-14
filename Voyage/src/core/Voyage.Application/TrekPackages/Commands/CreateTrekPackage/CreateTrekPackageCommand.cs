@@ -5,7 +5,6 @@ namespace Voyage.Application.TrekPackages.Commands.CreateTrekPackage
 {
     public class CreateTrekPackageCommand : IRequest<int>
     {
-        public int Id { get; set; }
         public int ListId { get; set; }
         public string Name { get; set; }
         public string Hope { get; set; }
