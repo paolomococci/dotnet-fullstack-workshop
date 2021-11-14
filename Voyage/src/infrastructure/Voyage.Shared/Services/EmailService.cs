@@ -1,6 +1,8 @@
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MimeKit;
 using Voyage.Application.Common.Exceptions;
 using Voyage.Application.Common.Interfaces;
 using Voyage.Application.Dtos.Email;
@@ -26,6 +28,24 @@ namespace Voyage.Shared.Services
         {
             try
             {
+                var mimeMessage = new MimeMessage
+                {
+                    Sender = MailboxAddress
+                        .Parse(emailRequest.From ?? MailSettings.EmailFrom)
+                };
+
+                mimeMessage.To.Add(MailboxAddress.Parse(emailRequest.To));
+                mimeMessage.Subject = emailRequest.Subject;
+
+                var builder = new BodyBuilder
+                {
+                    HtmlBody = emailRequest.Body
+                };
+
+                mimeMessage.Body = builder.ToMessageBody();
+
+                using var smtpClient = new SmtpClient();
+
                 // TODO
             }
             catch (System.Exception systemException)
