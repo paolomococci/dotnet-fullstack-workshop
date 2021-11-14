@@ -9,13 +9,13 @@ namespace Voyage.Application.TrekPackages.Commands.UpdateTrekPackageDetail
 {
     public class UpdateTrekPackageDetailCommandHandler : IRequestHandler<UpdateTrekPackageDetailCommand>
     {
-        private readonly IApplicationDbContext _context;
+        private readonly IApplicationDbContext _iApplicationDbContext;
 
         public UpdateTrekPackageDetailCommandHandler(
             IApplicationDbContext context
         )
         {
-            _context = context;
+            _iApplicationDbContext = context;
         }
 
         public async Task<Unit> Handle(
@@ -23,7 +23,7 @@ namespace Voyage.Application.TrekPackages.Commands.UpdateTrekPackageDetail
             CancellationToken cancellationToken
         )
         {
-            var entity = await _context.TrekPackages.FindAsync(request.Id);
+            var entity = await _iApplicationDbContext.TrekPackages.FindAsync(request.Id);
 
             if (entity == null)
             {
@@ -40,7 +40,7 @@ namespace Voyage.Application.TrekPackages.Commands.UpdateTrekPackageDetail
             entity.Confirmation = request.Confirmation;
             entity.Currency = request.Currency;
 
-            await _context.SaveChangesAsync(cancellationToken);
+            await _iApplicationDbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }
