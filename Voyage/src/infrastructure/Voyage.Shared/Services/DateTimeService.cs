@@ -5,6 +5,6 @@ namespace Voyage.Shared.Services
 {
     public class DateTimeService : IDateTime
     {
-        public DateTime NowUtc => throw new NotImplementedException();
+        public DateTime NowUtc => DateTime.UtcNow;
     }
 }
