@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Voyage.Application.Common.Exceptions;
 
 namespace Voyage.WebApi.Filters
 {
@@ -10,7 +11,11 @@ namespace Voyage.WebApi.Filters
 
         public ApiExceptionFilter()
         {
-            // TODO
+            _iDictionaryExceptionHandler = new Dictionary<Type, Action<ExceptionContext>>
+            {
+                { typeof(ValidationException), HandleValidationException },
+                { typeof(NotFoundException), HandleNotFoundException }
+            };
         }
 
         public override void OnException(
