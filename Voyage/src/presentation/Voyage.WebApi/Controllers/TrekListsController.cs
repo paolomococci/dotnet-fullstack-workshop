@@ -6,6 +6,30 @@ namespace Voyage.WebApi.Controllers
     [Route("api/[controller]")]
     public class TrekListsController : ApiController
     {
-
+        [HttpPost]
+        public void Create()
+        {
+            // TODO
+        }
+        [HttpGet("{id}")]
+        public void Read()
+        {
+            // TODO
+        }
+        [HttpGet]
+        public void ReadAll()
+        {
+            // TODO
+        }
+        [HttpPut("{id}")]
+        public void Update()
+        {
+            // TODO
+        }
+        [HttpDelete("{id}")]
+        public void Delete()
+        {
+            // TODO
+        }
     }
 }
