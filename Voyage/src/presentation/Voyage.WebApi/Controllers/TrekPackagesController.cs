@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Voyage.WebApi.Controllers
@@ -7,29 +8,38 @@ namespace Voyage.WebApi.Controllers
     public class TrekPackagesController : ApiController
     {
         [HttpPost]
-        public void Create()
+        public int Create()
         {
             // TODO
+            return StatusCodes.Status501NotImplemented;
         }
+
         [HttpGet("{id}")]
-        public void Read()
+        public int Read()
         {
             // TODO
+            return StatusCodes.Status501NotImplemented;
         }
+
         [HttpGet]
-        public void ReadAll()
+        public int ReadAll()
         {
             // TODO
+            return StatusCodes.Status501NotImplemented;
         }
+
         [HttpPut("{id}")]
-        public void Update()
+        public int Update()
         {
             // TODO
+            return StatusCodes.Status501NotImplemented;
         }
+
         [HttpDelete("{id}")]
-        public void Delete()
+        public int Delete()
         {
             // TODO
+            return StatusCodes.Status501NotImplemented;
         }
     }
 }
