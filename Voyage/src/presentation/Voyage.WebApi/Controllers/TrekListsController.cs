@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace Voyage.WebApi.Controllers
 {
-    public class TrekListsController
+    [ApiController]
+    [Route("api/[controller]")]
+    public class TrekListsController : ApiController
     {
 
     }
