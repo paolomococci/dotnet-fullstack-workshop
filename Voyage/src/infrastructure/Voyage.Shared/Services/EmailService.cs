@@ -1,8 +1,8 @@
-using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using MailKit.Net.Smtp;
 using Voyage.Application.Common.Exceptions;
 using Voyage.Application.Common.Interfaces;
 using Voyage.Application.Dtos.Email;
@@ -46,7 +46,8 @@ namespace Voyage.Shared.Services
 
                 using var smtpClient = new SmtpClient();
 
-                // TODO
+                await smtpClient.SendAsync(mimeMessage);
+                await smtpClient.DisconnectAsync(true);
             }
             catch (System.Exception systemException)
             {
