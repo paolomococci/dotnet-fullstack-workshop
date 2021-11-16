@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Voyage.Application.TrekPackages.Commands.CreateTrekPackage;
+using Voyage.Application.TrekPackages.Commands.DeleteTrekPackage;
 
 namespace Voyage.WebApi.Controllers
 {
@@ -39,10 +40,16 @@ namespace Voyage.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public int Delete()
+        public async Task<ActionResult> Delete(int id)
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            await Mediator.Send(
+                new DeleteTrekPackageCommand
+                {
+                    Id = id
+                }
+            );
+
+            return NoContent();
         }
     }
 }
