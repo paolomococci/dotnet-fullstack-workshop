@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Voyage.Application.TrekLists.Commands.CreateTrekList;
+using Voyage.Application.TrekLists.Commands.DeleteTrekList;
 using Voyage.Application.TrekLists.Commands.UpdateTrekList;
 using Voyage.Application.TrekLists.Queries.ExportTreks;
 using Voyage.Application.TrekLists.Queries.GetTreks;
@@ -60,10 +61,16 @@ namespace Voyage.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public int Delete()
+        public async Task<ActionResult> Delete(int id)
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            await Mediator.Send(
+                new DeleteTrekListCommand
+                {
+                    Id = id
+                }
+            );
+
+            return NoContent();
         }
     }
 }
