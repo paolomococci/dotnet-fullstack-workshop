@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Voyage.Application.TrekLists.Commands.CreateTrekList;
+using Voyage.Application.TrekLists.Queries.ExportTreks;
 using Voyage.Application.TrekLists.Queries.GetTreks;
 
 namespace Voyage.WebApi.Controllers
@@ -19,16 +20,26 @@ namespace Voyage.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TreksVm>> Read()
+        public async Task<FileResult> Read(int id)
         {
-            return await Mediator.Send(new GetTreksQuery());
+            var exportTreksVm = await Mediator.Send(
+                new ExportTreksQuery
+                {
+                    ListId = id
+                }
+            );
+
+            return File(
+                exportTreksVm.Content,
+                exportTreksVm.ContentType,
+                exportTreksVm.FileName
+            );
         }
 
         [HttpGet]
-        public int ReadAll()
+        public async Task<ActionResult<TreksVm>> ReadAll()
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            return await Mediator.Send(new GetTreksQuery());
         }
 
         [HttpPut("{id}")]
