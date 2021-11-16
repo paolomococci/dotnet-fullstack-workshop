@@ -1,5 +1,7 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Voyage.Application.TrekPackages.Commands.CreateTrekPackage;
 
 namespace Voyage.WebApi.Controllers
 {
@@ -8,10 +10,11 @@ namespace Voyage.WebApi.Controllers
     public class TrekPackagesController : ApiController
     {
         [HttpPost]
-        public int Create()
+        public async Task<ActionResult<int>> Create(
+            CreateTrekPackageCommand createTrekPackageCommand
+        )
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            return await Mediator.Send(createTrekPackageCommand);
         }
 
         [HttpGet("{id}")]
