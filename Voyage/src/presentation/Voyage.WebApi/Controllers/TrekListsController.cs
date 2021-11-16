@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Voyage.Application.TrekLists.Commands.CreateTrekList;
+using Voyage.Application.TrekLists.Queries.GetTreks;
 
 namespace Voyage.WebApi.Controllers
 {
@@ -18,10 +19,9 @@ namespace Voyage.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public int Read()
+        public async Task<ActionResult<TreksVm>> Read()
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            return await Mediator.Send(new GetTreksQuery());
         }
 
         [HttpGet]
