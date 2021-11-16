@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Voyage.Application.TrekPackages.Commands.CreateTrekPackage;
 using Voyage.Application.TrekPackages.Commands.DeleteTrekPackage;
 using Voyage.Application.TrekPackages.Commands.UpdateTrekPackage;
+using Voyage.Application.TrekPackages.Commands.UpdateTrekPackageDetail;
 
 namespace Voyage.WebApi.Controllers
 {
@@ -45,6 +46,22 @@ namespace Voyage.WebApi.Controllers
             }
 
             await Mediator.Send(updateTrekPackageCommand);
+
+            return NoContent();
+        }
+
+        [HttpPut("[action]")]
+        public async Task<ActionResult> UpdateItemDetails(
+            int id,
+            UpdateTrekPackageDetailCommand updateTrekPackageDetailCommand
+        )
+        {
+            if (id != updateTrekPackageDetailCommand.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(updateTrekPackageDetailCommand);
 
             return NoContent();
         }
