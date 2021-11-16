@@ -21,17 +21,15 @@ namespace Voyage.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public int Read()
+        public ActionResult Read()
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            return StatusCode(501);
         }
 
         [HttpGet]
-        public int ReadAll()
+        public ActionResult ReadAll()
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            return StatusCode(StatusCodes.Status501NotImplemented);
         }
 
         [HttpPut("{id}")]
