@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Voyage.Application.TrekLists.Commands.CreateTrekList;
+using Voyage.Application.TrekLists.Commands.UpdateTrekList;
 using Voyage.Application.TrekLists.Queries.ExportTreks;
 using Voyage.Application.TrekLists.Queries.GetTreks;
 
@@ -43,10 +44,19 @@ namespace Voyage.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public int Update()
+        public async Task<ActionResult> Update(
+            int id,
+            UpdateTrekListCommand updateTrekListCommand
+        )
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            if (id != updateTrekListCommand.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(updateTrekListCommand);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
