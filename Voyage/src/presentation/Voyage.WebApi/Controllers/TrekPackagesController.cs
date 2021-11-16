@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Voyage.Application.TrekPackages.Commands.CreateTrekPackage;
 using Voyage.Application.TrekPackages.Commands.DeleteTrekPackage;
+using Voyage.Application.TrekPackages.Commands.UpdateTrekPackage;
 
 namespace Voyage.WebApi.Controllers
 {
@@ -33,10 +34,19 @@ namespace Voyage.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public int Update()
+        public async Task<ActionResult> Update(
+            int id,
+            UpdateTrekPackageCommand updateTrekPackageCommand
+        )
         {
-            // TODO
-            return StatusCodes.Status501NotImplemented;
+            if (id != updateTrekPackageCommand.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(updateTrekPackageCommand);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
