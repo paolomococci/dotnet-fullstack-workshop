@@ -57,7 +57,7 @@ namespace Voyage.WebApi.Controllers
 
             await Mediator.Send(updateTrekListCommand);
 
-            return NoContent();
+            return StatusCode(StatusCodes.Status205ResetContent);
         }
 
         [HttpDelete("{id}")]

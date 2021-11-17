@@ -45,7 +45,7 @@ namespace Voyage.WebApi.Controllers
 
             await Mediator.Send(updateTrekPackageCommand);
 
-            return NoContent();
+            return StatusCode(StatusCodes.Status205ResetContent);
         }
 
         [HttpPut("[action]")]
@@ -56,7 +56,7 @@ namespace Voyage.WebApi.Controllers
         {
             if (id != updateTrekPackageDetailCommand.Id)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status205ResetContent);
             }
 
             await Mediator.Send(updateTrekPackageDetailCommand);
