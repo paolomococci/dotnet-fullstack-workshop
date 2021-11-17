@@ -54,7 +54,8 @@ namespace Voyage.WebApi.Filters
 
             var problemDetails = new ProblemDetails()
             {
-                // TODO
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+                Title = "The requested resource was not found.",
                 Detail = notFoundException.Message
             };
 
@@ -69,8 +70,9 @@ namespace Voyage.WebApi.Filters
         {
             var problemDetails = new ProblemDetails
             {
-                Status = StatusCodes.Status500InternalServerError
-                // TODO
+                Status = StatusCodes.Status500InternalServerError,
+                Title = "An internal server error occurred while processing your request.",
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1"
             };
 
             exceptionContext.Result = new ObjectResult(problemDetails)
@@ -85,12 +87,12 @@ namespace Voyage.WebApi.Filters
             ExceptionContext exceptionContext
         )
         {
-            var exception = exceptionContext.Exception as ValidationException;
+            var validationException = exceptionContext.Exception as ValidationException;
 
             var problemDetails = new ProblemDetails()
             {
-                // TODO
-                Detail = exception.Message
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                Detail = validationException.Message
             };
 
             exceptionContext.Result = new NotFoundObjectResult(problemDetails);
