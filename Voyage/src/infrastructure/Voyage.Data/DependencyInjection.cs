@@ -12,7 +12,7 @@ namespace Voyage.Data
         )
         {
             services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlite("")
+                options => options.UseSqlite("Data Source=VoyageTrekDatabase.sqlite3")
             );
 
             services.AddScoped<IApplicationDbContext>(

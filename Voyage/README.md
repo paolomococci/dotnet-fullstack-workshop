@@ -69,3 +69,11 @@ Project 'Voyage.WebApi' has the following package references
    > Swashbuckle.AspNetCore                    5.6.3       5.6.3
 
 ```
+
+## Database migration, with context /src/infrastructure/Voyage.Data/Contexts/ApplicationDbContext.cs
+
+```shell
+cd src/infrastructure/Voyage.Data
+dotnet ef migrations add InitialCreate --context ApplicationDbContext  --startup-project ../../presentation/Voyage.WebApi/
+dotnet ef database update --context ApplicationDbContext  --startup-project ../../presentation/Voyage.WebApi/
+```
