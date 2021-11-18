@@ -4,9 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Voyage.WebApi.Controllers.v1
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
-    public class ApiController : ControllerBase
+    [Route("api/v{version:ApiVersion}/[controller]")]
+    public abstract class ApiController : ControllerBase
     {
         private IMediator _iMediator;
 
