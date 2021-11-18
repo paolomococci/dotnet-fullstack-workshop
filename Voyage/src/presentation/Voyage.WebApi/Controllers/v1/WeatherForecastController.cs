@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Voyage.WebApi.Controllers.v1
 {
+    [ApiVersion("1.0", Deprecated = true)]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
