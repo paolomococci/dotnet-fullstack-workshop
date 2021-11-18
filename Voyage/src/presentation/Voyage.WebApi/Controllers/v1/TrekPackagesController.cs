@@ -6,7 +6,7 @@ using Voyage.Application.TrekPackages.Commands.DeleteTrekPackage;
 using Voyage.Application.TrekPackages.Commands.UpdateTrekPackage;
 using Voyage.Application.TrekPackages.Commands.UpdateTrekPackageDetail;
 
-namespace Voyage.WebApi.Controllers
+namespace Voyage.WebApi.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Voyage.WebApi.Controllers
+namespace Voyage.WebApi.Controllers.v1
 {
     [ApiController]
     [Route("[controller]")]

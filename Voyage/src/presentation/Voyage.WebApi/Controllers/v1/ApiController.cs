@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Voyage.WebApi.Controllers
+namespace Voyage.WebApi.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]

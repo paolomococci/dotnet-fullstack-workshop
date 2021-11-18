@@ -7,7 +7,7 @@ using Voyage.Application.TrekLists.Commands.UpdateTrekList;
 using Voyage.Application.TrekLists.Queries.ExportTreks;
 using Voyage.Application.TrekLists.Queries.GetTreks;
 
-namespace Voyage.WebApi.Controllers
+namespace Voyage.WebApi.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]
