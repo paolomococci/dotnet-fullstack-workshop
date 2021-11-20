@@ -1,4 +1,3 @@
-using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +9,10 @@ using Voyage.Data;
 using Voyage.Shared;
 using Voyage.Application;
 using Voyage.WebApi.Filters;
+using Voyage.WebApi.Helpers;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace Voyage.WebApi
 {
@@ -40,26 +43,48 @@ namespace Voyage.WebApi
 
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(swaggerUIOptions =>
             {
-                c.SwaggerDoc(
-                    "v1", new OpenApiInfo
-                    {
-                        Title = "Voyage.WebApi",
-                        Version = "v1"
-                    }
-                );
+                swaggerUIOptions.OperationFilter<SwaggerDefaultValues>();
+            });
+
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
+            services.AddApiVersioning(config =>
+            {
+                config.DefaultApiVersion = new ApiVersion(1, 0);
+                config.AssumeDefaultVersionWhenUnspecified = true;
+                config.ReportApiVersions = true;
+            });
+
+            services.AddVersionedApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
+            IApiVersionDescriptionProvider provider
+        )
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Voyage.WebApi v1"));
+                app.UseSwaggerUI(swaggerUIOptions =>
+                {
+                    foreach (var description in provider.ApiVersionDescriptions)
+                    {
+                        swaggerUIOptions.SwaggerEndpoint(
+                            $"/swagger/{description.GroupName}/swagger.json",
+                            description.GroupName.ToUpperInvariant()
+                        );
+                    }
+                });
             }
 
             app.UseHttpsRedirection();
