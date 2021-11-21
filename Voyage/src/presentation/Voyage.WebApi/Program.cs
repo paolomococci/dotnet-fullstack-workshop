@@ -11,7 +11,7 @@ namespace Voyage.WebApi
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             //CreateHostBuilder(args).Build().Run();
             var name = Assembly.GetExecutingAssembly().GetName();
@@ -35,6 +35,22 @@ namespace Voyage.WebApi
                     restrictedToMinimumLevel: LogEventLevel.Debug
                 )
                 .WriteTo.Console().CreateLogger();
+
+            try
+            {
+                Log.Information("starting host...");
+                CreateHostBuilder(args).Build().Run();
+                return 0;
+            }
+            catch (System.Exception ex)
+            {
+                Log.Fatal(ex, "... terminated unexpectedly!");
+                return 1;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
