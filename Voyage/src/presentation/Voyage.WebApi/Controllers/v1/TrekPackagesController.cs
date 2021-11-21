@@ -20,18 +20,6 @@ namespace Voyage.WebApi.Controllers.v1
             return await Mediator.Send(createTrekPackageCommand);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult Read()
-        {
-            return StatusCode(501);
-        }
-
-        [HttpGet]
-        public ActionResult ReadAll()
-        {
-            return StatusCode(StatusCodes.Status501NotImplemented);
-        }
-
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(
             int id,
