@@ -3,3 +3,4 @@ obj/
 .vscode/
 Logs/
 *.sqlite3
+Help.md
