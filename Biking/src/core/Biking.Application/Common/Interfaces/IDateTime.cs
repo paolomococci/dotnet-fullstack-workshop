@@ -1,8 +1,9 @@
+using System;
+
 namespace Biking.Application.Common.Interfaces
 {
-	public interface IDateTime
-	{
-		
-	}
+    public interface IDateTime
+    {
+        DateTime NowUtc { get; }
+    }
 }
-
