@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Voyage.Application.Dtos.Email
 {
     public class EmailDto
