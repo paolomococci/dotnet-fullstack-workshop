@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Biking.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Biking.Application.Common.Interfaces
