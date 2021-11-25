@@ -3,7 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Biking.Application.Common.Exceptions;
 using Biking.Application.Common.Interfaces;
+using Biking.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Biking.Application.TrekLists.Commands.DeleteTrekList
 {
