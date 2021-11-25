@@ -1,6 +1,6 @@
 namespace Biking.Domain.Enums
 {
-    public enum CurrencyCurrency
+    public enum Currency
     {
         AED,
         AFN,
