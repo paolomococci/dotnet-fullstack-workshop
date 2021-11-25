@@ -1,9 +1,9 @@
-using AutoMapper.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Biking.Application.Common.Interfaces;
 using Biking.Domain.Settings;
 using Biking.Shared.Files;
 using Biking.Shared.Services;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Biking.Shared
 {

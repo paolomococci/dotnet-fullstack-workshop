@@ -1,12 +1,12 @@
-using System.Net.Mail;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using MimeKit;
+using MailKit.Net.Smtp;
 using Biking.Application.Common.Exceptions;
 using Biking.Application.Common.Interfaces;
 using Biking.Application.Dtos.Email;
 using Biking.Domain.Settings;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using MimeKit;
 
 namespace Biking.Shared.Services
 {
