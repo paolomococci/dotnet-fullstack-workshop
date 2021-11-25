@@ -1,3 +1,4 @@
+using Biking.Domain.Enums;
 using MediatR;
 
 namespace Biking.Application.TrekPackages.Commands.UpdateTrekPackageDetail
