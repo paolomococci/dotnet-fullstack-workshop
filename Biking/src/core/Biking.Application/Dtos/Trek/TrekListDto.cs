@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Biking.Application.Common.Mappings;
+using Biking.Domain.Entities;
 
 namespace Biking.Application.Dtos.Trek
 {
