@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Biking.Application.Common.Exceptions;
 using Biking.Application.Common.Interfaces;
+using Biking.Domain.Entities;
 using MediatR;
 
 namespace Biking.Application.TrekPackages.Commands.UpdateTrekPackageDetail
@@ -26,7 +27,10 @@ namespace Biking.Application.TrekPackages.Commands.UpdateTrekPackageDetail
 
             if (entity == null)
             {
-                throw new NotFoundException(nameof(TrekPackage), request.Id);
+                throw new NotFoundException(
+                    nameof(TrekPackage),
+                    request.Id
+                );
             }
 
             entity.Id = request.Id;
