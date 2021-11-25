@@ -1,5 +1,7 @@
 using AutoMapper;
 using Biking.Application.Common.Mappings;
+using Biking.Domain.Entities;
+using Biking.Domain.Enums;
 
 namespace Biking.Application.Dtos.Trek
 {
