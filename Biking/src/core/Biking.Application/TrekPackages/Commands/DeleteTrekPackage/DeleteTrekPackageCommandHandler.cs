@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Biking.Application.Common.Exceptions;
 using Biking.Application.Common.Interfaces;
+using Biking.Domain.Entities;
 using MediatR;
 
 namespace Biking.Application.TrekPackages.Commands.DeleteTrekPackage
