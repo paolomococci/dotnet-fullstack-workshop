@@ -1,8 +1,14 @@
+using System;
+using Microsoft.AspNetCore.Mvc.Filters;
+
 namespace Biking.Identity.Helpers
 {
-	public class AuthorizeAttribute
-	{
-		
-	}
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class AuthorizeAttribute : Attribute, IAuthorizationFilter
+    {
+        public void OnAuthorization(AuthorizationFilterContext context)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
-
