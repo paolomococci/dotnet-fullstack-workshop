@@ -5,4 +5,3 @@ namespace Biking.Identity.Helpers
         public string Secret { get; set; }
     }
 }
-
