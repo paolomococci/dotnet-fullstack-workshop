@@ -21,4 +21,3 @@ namespace Biking.Application.Dtos.User
         }
     }
 }
-
