@@ -1,8 +1,7 @@
-namespace Biking.WebApi.Controllers
+namespace Biking.WebApi.Controllers.v1
 {
-	public class UsersController
-	{
-		
-	}
-}
+    public class UsersController
+    {
 
+    }
+}
