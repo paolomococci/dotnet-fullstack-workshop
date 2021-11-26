@@ -1,8 +1,3 @@
-using Biking.Application;
-using Biking.Data;
-using Biking.Shared;
-using Biking.WebApi.Filters;
-using Biking.WebApi.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +6,18 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
+
+using System.Collections.Generic;
+
+using Biking.Application;
+using Biking.Data;
+using Biking.Identity.Helpers;
+using Biking.Shared;
+using Biking.WebApi.Filters;
+using Biking.WebApi.Helpers;
 
 namespace Biking.WebApi
 {
@@ -31,6 +37,7 @@ namespace Biking.WebApi
             services.AddInfrastructureData();
             services.AddInfrastructureShared(Configuration);
             services.AddHttpContextAccessor();
+            services.AddControllers();
 
             services.AddControllersWithViews(
                 options => options.Filters.Add(new ApiExceptionFilter())
@@ -45,6 +52,32 @@ namespace Biking.WebApi
             services.AddSwaggerGen(swaggerUIOptions =>
             {
                 swaggerUIOptions.OperationFilter<SwaggerDefaultValues>();
+                swaggerUIOptions.AddSecurityDefinition(
+                    "Bearer",
+                    new OpenApiSecurityScheme
+                    {
+                        Description = "JWT Authorization header using the Bearer scheme.",
+                        Name = "Authorization",
+                        In = ParameterLocation.Header,
+                        Type = SecuritySchemeType.Http,
+                        Scheme = "bearer"
+                    }
+                );
+                swaggerUIOptions.AddSecurityRequirement(
+                    new OpenApiSecurityRequirement
+                    {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                }
+                            }, new List<string>()
+                        }
+                    }
+                );
             });
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
@@ -89,6 +122,8 @@ namespace Biking.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseAuthorization();
 
