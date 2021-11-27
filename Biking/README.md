@@ -14,5 +14,10 @@ https://github.com/paolomococci/mocaccino/blob/main/Cupcake/cupcake
 ```shell
 cd src/infrastructure/Biking.Data
 dotnet ef migrations add InitialCreate --context ApplicationDbContext  --startup-project ../../presentation/Biking.WebApi/
+```
+
+To undo this action, use 'ef migrations remove'.
+
+```shell
 dotnet ef database update --context ApplicationDbContext  --startup-project ../../presentation/Biking.WebApi/
 ```
