@@ -1,7 +1,28 @@
+using System;
+using Trekking.Domain.Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+
 namespace Trekking.Identity.Helpers
 {
-	public class AuthorizeAttribute
-	{
-		
-	}
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class AuthorizeAttribute : Attribute, IAuthorizationFilter
+    {
+        public void OnAuthorization(
+            AuthorizationFilterContext authorizationFilterContext
+        )
+        {
+            var user = (User)authorizationFilterContext.HttpContext.Items["User"];
+            if (user == null)
+            {
+                authorizationFilterContext.Result = new JsonResult(
+                    new { message = "Unauthorized" }
+                )
+                {
+                    StatusCode = StatusCodes.Status401Unauthorized
+                };
+            }
+        }
+    }
 }
