@@ -39,6 +39,8 @@ namespace Trekking.WebApi
             services.AddHttpContextAccessor();
             services.AddControllers();
 
+            services.AddMemoryCache();
+
             services.AddControllersWithViews(
                 options => options.Filters.Add(new ApiExceptionFilter())
             );
