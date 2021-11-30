@@ -7,6 +7,7 @@ using Trekking.Application.TrekLists.Queries.GetTreks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Trekking.WebApi.Controllers.v1;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Trekking.WebApi.Controllers.v2
 {
@@ -15,6 +16,12 @@ namespace Trekking.WebApi.Controllers.v2
     [Route("api/v{version:apiVersion}/[controller]")]
     public class TrekListsController : ApiController
     {
+        private readonly IMemoryCache _iMemoryCache;
+
+        public TrekListsController(IMemoryCache iMemoryCache)
+        {
+            _iMemoryCache = iMemoryCache;
+        }
         [HttpPost]
         public async Task<ActionResult<int>> Create(
             CreateTrekListCommand createTrekListCommand
