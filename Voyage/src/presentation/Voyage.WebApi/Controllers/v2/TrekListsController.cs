@@ -8,7 +8,6 @@ using Voyage.Application.TrekLists.Commands.DeleteTrekList;
 using Voyage.Application.TrekLists.Commands.UpdateTrekList;
 using Voyage.Application.TrekLists.Queries.ExportTreks;
 using Voyage.Application.TrekLists.Queries.GetTreks;
-using Voyage.WebApi.Controllers.v1;
 
 namespace Voyage.WebApi.Controllers.v2
 {
