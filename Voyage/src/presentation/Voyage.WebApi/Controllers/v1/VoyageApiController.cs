@@ -7,7 +7,7 @@ namespace Voyage.WebApi.Controllers.v1
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public abstract class ApiController : ControllerBase
+    public abstract class VoyageApiController : ControllerBase
     {
         private IMediator _iMediator;
 
