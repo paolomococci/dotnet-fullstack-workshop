@@ -24,7 +24,10 @@ namespace Trekking.Application.TrekLists.Queries.GetTreks
             _iMapper = mapper;
         }
 
-        public async Task<TreksVm> Handle(GetTreksQuery request, CancellationToken cancellationToken)
+        public async Task<TreksVm> Handle(
+            GetTreksQuery request,
+            CancellationToken cancellationToken
+        )
         {
             return new TreksVm
             {
