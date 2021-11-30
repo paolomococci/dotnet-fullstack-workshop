@@ -10,7 +10,7 @@ namespace Voyage.WebApi.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TrekPackagesController : ApiController
+    public class TrekPackagesController : VoyageApiController
     {
         [HttpPost]
         public async Task<ActionResult<int>> Create(

@@ -1,6 +1,8 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Voyage.Application.TrekLists.Commands.CreateTrekList;
 using Voyage.Application.TrekLists.Commands.DeleteTrekList;
 using Voyage.Application.TrekLists.Commands.UpdateTrekList;
@@ -13,8 +15,15 @@ namespace Voyage.WebApi.Controllers.v2
     [ApiVersion("2.0")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
-    public class TrekListsController : ApiController
+    public class TrekListsController : VoyageApiController
     {
+        private readonly IMemoryCache _iMemoryCache;
+
+        public TrekListsController(IMemoryCache iMemoryCache)
+        {
+            _iMemoryCache = iMemoryCache;
+        }
+
         [HttpPost]
         public async Task<ActionResult<int>> Create(
             CreateTrekListCommand createTrekListCommand
@@ -43,7 +52,26 @@ namespace Voyage.WebApi.Controllers.v2
         [HttpGet]
         public async Task<ActionResult<TreksVm>> ReadAll()
         {
-            return await Mediator.Send(new GetTreksQuery());
+            if (!_iMemoryCache.TryGetValue(
+                null,
+                out TreksVm treks
+            ))
+            {
+                treks = await Mediator.Send(new GetTreksQuery());
+                var cacheExpirationOptions = new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpiration = DateTime.Now.AddHours(6),
+                    Priority = CacheItemPriority.Normal,
+                    SlidingExpiration = TimeSpan.FromMinutes(5)
+                };
+                _iMemoryCache.Set(
+                    null,
+                    treks,
+                    cacheExpirationOptions
+                );
+            }
+
+            return treks;
         }
 
         [HttpPut("{id}")]
