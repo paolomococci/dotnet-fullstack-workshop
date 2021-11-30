@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Trekking.WebApi.Controllers.v1
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class TrekPackagesController : ApiController
     {
         [HttpPost]
