@@ -8,8 +8,6 @@ using Voyage.Application.TrekPackages.Commands.UpdateTrekPackageDetail;
 
 namespace Voyage.WebApi.Controllers.v1
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class TrekPackagesController : VoyageApiController
     {
         [HttpPost]

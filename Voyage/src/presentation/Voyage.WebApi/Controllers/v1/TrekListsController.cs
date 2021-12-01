@@ -9,8 +9,6 @@ using Voyage.Application.TrekLists.Queries.GetTreks;
 
 namespace Voyage.WebApi.Controllers.v1
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class TrekListsController : VoyageApiController
     {
         [HttpPost]
