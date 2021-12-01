@@ -13,9 +13,6 @@ using Trekking.Application.Dtos.Trek;
 
 namespace Trekking.WebApi.Controllers.v2
 {
-    [ApiVersion("2.0")]
-    [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
     public class TrekPackagesController : ApiController
     {
         private readonly IMemoryCache _iMemoryCache;

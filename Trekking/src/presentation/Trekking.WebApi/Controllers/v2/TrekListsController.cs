@@ -11,9 +11,6 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Trekking.WebApi.Controllers.v2
 {
-    [ApiVersion("2.0")]
-    [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
     public class TrekListsController : ApiController
     {
         private readonly IMemoryCache _iMemoryCache;
