@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Biking.WebApi.Controllers.v1
 {
-    [ApiController]
-    [Route("api/[controller]")]
     public class TrekListsController : ApiController
     {
         [HttpPost]
