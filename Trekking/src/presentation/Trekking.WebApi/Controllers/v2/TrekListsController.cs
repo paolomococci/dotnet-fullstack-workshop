@@ -6,7 +6,6 @@ using Trekking.Application.TrekLists.Queries.ExportTreks;
 using Trekking.Application.TrekLists.Queries.GetTreks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Trekking.WebApi.Controllers.v1;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Trekking.WebApi.Controllers.v2

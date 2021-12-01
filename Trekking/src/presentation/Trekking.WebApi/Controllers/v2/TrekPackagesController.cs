@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System.Collections.Generic;
 using System;
-using Trekking.WebApi.Controllers.v1;
 using Trekking.Application.Dtos.Trek;
 
 namespace Trekking.WebApi.Controllers.v2
