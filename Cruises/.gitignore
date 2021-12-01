@@ -1,0 +1,6 @@
+bin/
+obj/
+.vscode/
+Logs/
+*.sqlite3
+HELP.md
