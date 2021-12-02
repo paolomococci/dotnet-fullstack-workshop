@@ -24,7 +24,7 @@ namespace Cruises.Application.Common.Behaviors
       {
         var requestName = typeof(TRequest).Name;
         _iLogger.LogInformation(
-          "Trekking Request: {@Request}",
+          "Cruises Request: {@Request}",
           requestName,
           tRequest
         );
