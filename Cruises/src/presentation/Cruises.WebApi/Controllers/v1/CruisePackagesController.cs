@@ -1,6 +1,6 @@
 namespace Cruises.WebApi.Controllers.v1
 {
-  public class CruiseListsController
+  public class CruisePackagesController
   {
 
   }
