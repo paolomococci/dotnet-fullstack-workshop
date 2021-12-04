@@ -5,6 +5,6 @@ namespace Cruises.Application.Common.Interfaces
 {
   public interface ICsvFileBuilder
   {
-    byte[] BuildTrekPackagesFile(IEnumerable<CruisePackageRecord> records);
+    byte[] BuildCruisePackagesFile(IEnumerable<CruisePackageRecord> records);
   }
 }
