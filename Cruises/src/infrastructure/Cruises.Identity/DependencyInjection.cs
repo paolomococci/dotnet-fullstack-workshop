@@ -1,7 +1,7 @@
 namespace Cruises.Identity
 {
-	public class DependencyInjection
-	{
-		
-	}
+  public static class DependencyInjection
+  {
+
+  }
 }
