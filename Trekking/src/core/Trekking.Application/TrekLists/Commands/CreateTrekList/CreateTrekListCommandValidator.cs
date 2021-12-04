@@ -1,23 +1,23 @@
 using Trekking.Application.Common.Interfaces;
 using FluentValidation;
 
-namespace Trekking.Application.TrekLists.Commands
+namespace Trekking.Application.TrekLists.Commands.CreateTrekList
 {
-    public class CreateTrekListCommandValidator : AbstractValidator<CreateTrekListCommand>
+  public class CreateTrekListCommandValidator : AbstractValidator<CreateTrekListCommand>
+  {
+    private readonly IApplicationDbContext _iApplicationDbContext;
+
+    public CreateTrekListCommandValidator(IApplicationDbContext context)
     {
-        private readonly IApplicationDbContext _iApplicationDbContext;
+      _iApplicationDbContext = context;
 
-        public CreateTrekListCommandValidator(IApplicationDbContext context)
-        {
-            _iApplicationDbContext = context;
+      RuleFor(createTrekListCommand => createTrekListCommand.Country)
+          .NotEmpty().WithMessage("Country field is required")
+          .MaximumLength(128).WithMessage("The Country field accepts a maximum of 128 characters");
 
-            RuleFor(createTrekListCommand => createTrekListCommand.Country)
-                .NotEmpty().WithMessage("Country field is required")
-                .MaximumLength(128).WithMessage("The Country field accepts a maximum of 128 characters");
-
-            RuleFor(createTrekListCommand => createTrekListCommand.City)
-                .NotEmpty().WithMessage("City field is required")
-                .MaximumLength(128).WithMessage("The City field accepts a maximum of 128 characters");
-        }
+      RuleFor(createTrekListCommand => createTrekListCommand.City)
+          .NotEmpty().WithMessage("City field is required")
+          .MaximumLength(128).WithMessage("The City field accepts a maximum of 128 characters");
     }
+  }
 }
