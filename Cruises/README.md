@@ -17,5 +17,16 @@ https://github.com/paolomococci/mocaccino/blob/main/Cupcake/cupcake
 ```shell
 cd src/infrastructure/Cruises.Data
 dotnet ef migrations add InitialCreate --context ApplicationDbContext  --startup-project ../../presentation/Cruises.WebApi/
+```
+
+at this point, if you want to go back you can type:
+
+```shell
+ef migrations remove
+```
+
+otherwise, if everything is correct, proceed with the following command:
+
+```shell
 dotnet ef database update --context ApplicationDbContext  --startup-project ../../presentation/Cruises.WebApi/
 ```
